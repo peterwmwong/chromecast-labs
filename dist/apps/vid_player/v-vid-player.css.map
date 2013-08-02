@@ -1,0 +1,6 @@
+{
+"version": "3",
+"mappings": "AAAA,YAAa;EACX,KAAK,EAAE,OAAO;EACd,UAAU,EAAE,KAAK",
+"sources": ["../../../apps/vid_player/v-vid-player.scss"],
+"file": "v-vid-player.css"
+}
