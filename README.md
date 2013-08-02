@@ -1,6 +1,14 @@
 _Exploring and exploiting the Google Chromecast!_
 
-This repo is a collection of Sender and Receiver applications.
+This repo is a collection of Google Chromecast Receiver applications.
+
+Getting Started
+---------------
+
+  > git clone https://github.com/peterwmwong/chromecast-labs.git
+  > bundle install
+  > npm install
+  > bower install
 
 Repo organization
 -----------------
