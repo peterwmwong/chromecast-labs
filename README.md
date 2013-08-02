@@ -5,10 +5,18 @@ This repo is a collection of Google Chromecast Receiver applications.
 Getting Started
 ---------------
 
-  > git clone https://github.com/peterwmwong/chromecast-labs.git
-  > bundle install
-  > npm install
-  > bower install
+    > git clone https://github.com/peterwmwong/chromecast-labs.git
+    > bundle install
+    > npm install
+    > bower install
+    > grunt
+
+Developing
+----------
+
+    > grunt watch
+
+TODO: grunt web server
 
 Repo organization
 -----------------
