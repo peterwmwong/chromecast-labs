@@ -66,12 +66,23 @@ module.exports = function(grunt) {
         files: '<%= slim.dist.src %>',
         tasks: ['slim:dist']
       }
+    },
+
+    connect: {
+      server: {
+        options: {
+          hostname: '*',
+          port: 8080,
+          base: './'
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-slim');
 
   grunt.registerTask('default',[
