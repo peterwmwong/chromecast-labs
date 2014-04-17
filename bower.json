@@ -1,7 +1,0 @@
-{
-  "name": "chromecast-labs",
-  "version": "0.0.0",
-  "dependencies": {
-    "polymer":"0.0.20130801"
-  }
-}
