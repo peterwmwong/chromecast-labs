@@ -36,14 +36,12 @@ $app-bar-height: $baseline * 8;
 
   &:last-child { border-bottom: none; }
 
-  &.s-watched { color: $gray-darker; }
-
   &__play-button { color: $gray-darker; }
 
   &__season {
     color: $gray-dark;
     font-size: 1.2rem;
-    font-weight: $font-weight-light;
     font-style: italic;
+    font-weight: $font-weight-light;
   }
 }
