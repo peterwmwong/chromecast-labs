@@ -1,0 +1,112 @@
+@import 'colors';
+
+// TYPOGRAPHY
+$font-stack-proportional: "Source Sans Pro", Helvetica, Arial, sans-serif;
+$font-stack-monospace: "Source Code", monospace;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+
+$font-root-size: 12px; // Makes relative sizing math easier.
+$base-font-size: 16px; // TODO: VESTIGAL. Remove all references to it.
+
+// Smoothing
+
+// This mixin overrides default anti-aliasing in Webkit and Gecko, which tends to
+// be too heavy for dark-on-light text. It is on by default. In cases
+// where text will be light-on-dark, please turn this value off.
+
+@mixin font-smoothing($value: on) {
+  @if $value == on {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+// Sizing
+
+// The following scale represents the range of type sizes that are used
+// throughout the app. Roughly based on the major second scale (1.125):
+// http://modularscale.com/scale/?px1=16&px2=&ra1=1.125&ra2=0.
+
+// base +3: 32px or 3.2rem
+// base +2: 26px or 2.6rem
+// base +1: 20px or 2rem
+// base   : 16px or 1.6rem
+// base -1: 14px or 1.4rem
+// base -2: 12px or 1.2rem
+// base -3: 10px or 1rem
+
+// The following mixin makes it easy to use relative font sizes. It
+// makes use of root ems and provides a pixel based fall-back
+// for older browsers (IE8).
+
+@mixin font-size($value: 1.6) {
+  font-size: ($value * 10) + px;
+  font-size: $value + rem;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+// visually hides an element without using display: none to allow
+// inputs to receive focus without any side effects from offscreen
+// positioning.
+// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+
+%visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px !important;
+  width: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+%input-drop-shadow {
+  box-shadow: 0 5px 2px -2px transparentize($gray-darkest, 0.9);
+}
+
+%card-shadow {
+  box-shadow: 0px 2px 0px black;
+}
+
+// LAYOUT
+
+// TODO: make sure dimensional var are applied properly.
+
+// 1. Used to determine VERTICAL offsets, padding and margins ONLY.
+// 2. Used to determine HORIZONTAL offsets, padding and margins ONLY.
+
+$baseline: 6px; // 1
+$base-width: 5px;
+$column: 100px;
+$gutter: 20px; // 2
+
+// Bourbon's built in Flex-grid mixin references these named vars
+// in situations where widths need to be specified in PERCENTAGES.
+
+$fg-column: $column;
+$fg-gutter: $gutter;
+$fg-max-columns: 10;
+
+// Bourbon's built in Grid-width mixin references these named vars
+// used in situations where widths need to be specified in PIXELS.
+
+$gw-column: $column;
+$gw-gutter: $gutter;
+
+// ANIMATION
+
+$animation-duration: 250ms;

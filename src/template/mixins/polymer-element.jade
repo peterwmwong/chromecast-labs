@@ -1,0 +1,13 @@
+mixin polymer-element
+  - var elementPath = /\/src\/(.*).jade$/.exec( jade_debug[jade_debug.length - 1].filename )[1];
+  - var filename    = /\/([^\/]*)$/.exec( elementPath )[1];
+  - attributes.name = filename
+
+  polymer-element&attributes(attributes)
+    template
+      - if (!attributes.nocss)
+        link(rel='stylesheet' href=(filename + '.css'))
+      block
+    - if (!attributes.noscript)
+      script
+        | !{"System.import('"+elementPath+"')"};

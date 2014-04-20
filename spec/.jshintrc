@@ -1,0 +1,19 @@
+{
+  "undef": true,
+  "unused": true,
+  "esnext": true,
+  "globalstrict": false, // ES6 Traceur automatically adds 'use strict'
+  "globals": {
+    "afterEach": false,
+    "beforeEach": false,
+    "describe": false,
+    "document": false,
+    "expect": false,
+    "it": false,
+    "Polymer": false,
+    "Platform": false,
+    "Promise": false,
+    "setTimeout": false,
+    "window": false
+  }
+}

@@ -1,0 +1,30 @@
+link(rel='import' href='../../bower_components/polymer-ajax/polymer-ajax.html')
+link(rel='import' href='../../bower_components/polymer-localstorage/polymer-localstorage.html')
+
+polymer-element(name='z-github-api' attributes='test path response error')
+  template
+    style :host { display: none; }
+
+    template(if='{{ !requestToken.value }}')
+      polymer-localstorage(name='pivotal-request-token'
+                           value='{{requestToken.value}}'
+                           on-polymer-localstorage-load='{{onLocalStorageLoad}}')
+
+    template(if='{{ requestToken.value && !test }}')
+      polymer-ajax(auto
+                   url='https://api.github.com/{{path}}'
+                   headers='{{ {"X-TrackerToken": requestToken.value} }}'
+                   response='{{response}}'
+                   handleAs='json')
+
+  script.
+    Polymer('z-github-api',{
+      requestToken: {value:null},
+      onLocalStorageLoad: function(){
+        if (this.requestToken.value == null) {
+          this.error = {type:'no-request-token', message:'No Github API Request Token'};
+          //- DON'T COMMIT MEEZ
+          this.requestToken.value = 'fb94091eb18580f88e2c80dd9b2f7a7a';
+        }
+      }
+    });

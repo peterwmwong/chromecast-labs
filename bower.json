@@ -1,0 +1,17 @@
+{
+  "name": "chromecast-labs",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jasmine": "2.0.0",
+    "platform": "Polymer/platform#0.2.3",
+    "polymer": "Polymer/polymer#0.2.3",
+    "core-ajax": "Polymer/core-ajax#0.2.3"
+  }
+}

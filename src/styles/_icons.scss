@@ -1,0 +1,23 @@
+@import 'fonts';
+
+html /deep/ {
+
+  .t-icon,
+  %t-icon {
+    @include font-smoothing(on);
+    font-family: 'Flaticons Stroke';
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: normal;
+    line-height: inherit;
+    speak: none;
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  .t-icon-control {
+    @extend %t-icon;
+    text-shadow: 0 2px rgba(0,0,0,.25);
+  }
+
+}

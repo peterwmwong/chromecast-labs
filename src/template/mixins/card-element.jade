@@ -1,0 +1,6 @@
+include polymer-element
+
+mixin card-element()
+  - attributes.attributes = 'cardOptions'
+  +polymer-element&attributes(attributes)
+    block

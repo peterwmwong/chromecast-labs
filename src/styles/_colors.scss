@@ -1,0 +1,21 @@
+$gray-darkest          :hsl(210,15%,15%);
+$gray-darker           :hsl(210,15%,30%);
+$gray-dark             :hsl(210,15%,45%);
+$gray-light            :hsl(210,15%,70%);
+$gray-lighter          :hsl(210,15%,87%);
+$gray-lightest         :hsl(210,15%,93%);
+
+// TODO(pwong): Below colors are not correct. Colors were originally for a light
+//              theme and need to be reevaluated for a dark theme.
+$brand-primary-dark    :hsl(210,68%,31%);
+$brand-primary-light   :hsl(210,69%,45%);
+$brand-primary-lighter :hsl(210,65%,90%);
+
+$brand-secondary-dark  :hsl(325,78%,33%);
+$brand-secondary-light :hsl(330,78%,60%);
+
+$confirm               :hsl(109,41%,56%);
+$error                 :hsl(355,100%,67%);
+$warning               :hsl(34,65%,55%);
+$warning-darker        :darken(desaturate($warning, 50%), 10%);
+$notify                :hsl(43,81%,83%);
