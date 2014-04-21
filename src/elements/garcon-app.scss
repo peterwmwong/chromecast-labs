@@ -3,39 +3,40 @@
 
 $app-bar-height: $baseline * 8;
 
+
 :host {
   display: block;
-  padding-top: $app-bar-height;
+  padding: $app-bar-height 0 ($baseline * 2) 0;
 }
 
 .app-bar {
   @include position(fixed, 0px 0px null 0px);
   background: $brand-primary-light;
-  border-bottom: 2px solid $brand-primary-dark;
+  border-bottom: 2px solid darken($brand-primary-light, 10%);
   font-size: 1.4rem;
   font-weight: $font-weight-semibold;
   line-height: $app-bar-height - 2;
   text-shadow: 0 2px rgba(0,0,0,.25);
+
+  .app-bar__settings {
+    margin-left: $base-width * -2;
+  }
 }
 
-.show {
-  &__name { color: $gray-light; }
+garcon-nav {
+  @include position(fixed, 0px null 0px 0px);
+  width: $column * 3.25;
 }
 
-.videos {
-  @extend %card-shadow;
-  background: $gray-darkest;
+.content-overlay {
+  @include position(absolute, 0px 0px 0px 0px);
+  display: block;
+  content: '';
+  background: black;
+  opacity: 0.666;
 }
-
 
 .video {
-  @include clearfix;
-  border-bottom: 1px solid lighten($gray-darkest, 5%);
-  line-height: $baseline * 10;
-  vertical-align: middle;
-
-  &:last-child { border-bottom: none; }
-
   &__play-button { color: $gray-darker; }
 
   &__season {

@@ -1,0 +1,28 @@
+html /deep/ {
+
+  .b-list {
+
+    .b-list__item {
+      padding-left: $base-width * 3;
+      padding-right: $base-width * 3;
+      border-bottom: 1px solid transparentize($gray-lightest, .95);
+      line-height: $baseline * 10;
+    }
+
+    .b-list__item--header {
+      border-bottom: 1px solid transparentize($gray-lightest, .9);
+      font-size: 1rem;
+      line-height: $baseline * 6;
+      background-color: rgba(0,0,0,.25);
+      color: $gray-dark;
+      letter-spacing: 1px;
+    }
+  }
+
+  .b-list--card {
+    @extend %card-shadow;
+    background: $gray-darkest;
+
+    .b-list__item:last-child { border-bottom: none; }
+  }
+}

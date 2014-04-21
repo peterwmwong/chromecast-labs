@@ -1,4 +1,10 @@
-Polymer('z-app',{
+Polymer('garcon-app',{
+
+  toggleNav() { this.isNavShowing = !this.isNavShowing; },
+
+  // Change Listeners
+  // ----------------
+
   videosChanged(old, videos) {
     if (videos) {
       var showMap = videos.reduce((showMap, video)=>{

@@ -9,7 +9,6 @@ $font-weight-normal: 400;
 $font-weight-semibold: 600;
 
 $font-root-size: 12px; // Makes relative sizing math easier.
-$base-font-size: 16px; // TODO: VESTIGAL. Remove all references to it.
 
 // Smoothing
 
@@ -79,7 +78,7 @@ $base-font-size: 16px; // TODO: VESTIGAL. Remove all references to it.
 }
 
 %card-shadow {
-  box-shadow: 0px 2px 0px black;
+  box-shadow: 0px 2px 0px rgba(0,0,0,.5);
 }
 
 // LAYOUT

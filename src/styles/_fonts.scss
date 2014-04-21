@@ -14,10 +14,14 @@
   }
 }
 
-// Truncate text with an ellipsis
-html /deep/ .t-truncate,
-%t-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+html /deep/ {
+
+  // Truncate text with an ellipsis
+  .t-truncate,
+  %t-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
 }

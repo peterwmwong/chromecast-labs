@@ -1,8 +1,10 @@
 @import 'bourbon';
-@import 'icons';
-@import 'layouts';
 @import 'constants';
 
+@import 'layouts';
+@import 'fonts';
+@import 'icons';
+@import 'lists';
 
 // -----
 // Fonts
@@ -323,7 +325,7 @@ html /deep/ {
     color: $gray-lighter;
     font-family: $font-stack-proportional;
     font-size: 1.6rem;
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-light;
     line-height: 1;
     text-rendering: optimizeLegibility;
   }
@@ -331,8 +333,10 @@ html /deep/ {
   h1,
   h2,
   h3 {
+    color: $gray-light;
     font-weight: $font-weight-light;
     margin: 0;
+    text-shadow: 0 2px black;
   }
 
   h1 { font-size: 3.2rem; }

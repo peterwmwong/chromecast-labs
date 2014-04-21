@@ -1,22 +1,33 @@
-@import 'constants';
-
 html /deep/ {
 
-  .l-float-r { float: right; }
-  .l-float-l { float: left;  }
+  .l-float-r,
+  %l-float-r { float: right; }
+
+  .l-float-l,
+  %l-float-l { float: left;  }
 
   @each $type in padding, margin {
     @for $i from 1 through 6 {
-      .l-#{$type}-r#{$i} { #{$type}-right: $base-width * $i; }
-      .l-#{$type}-l#{$i} { #{$type}-left:  $base-width * $i; }
-      .l-#{$type}-h#{$i} {
+      .l-#{$type}-r#{$i},
+      %l-#{$type}-r#{$i} { #{$type}-right: $base-width * $i; }
+
+      .l-#{$type}-l#{$i},
+      %l-#{$type}-l#{$i} { #{$type}-left:  $base-width * $i; }
+
+      .l-#{$type}-h#{$i},
+      %l-#{$type}-h#{$i} {
         #{$type}-left:  $base-width * $i;
         #{$type}-right: $base-width * $i;
       }
 
-      .l-#{$type}-t#{$i} { #{$type}-top:    $baseline * $i; }
-      .l-#{$type}-b#{$i} { #{$type}-bottom: $baseline * $i; }
-      .l-#{$type}-v#{$i} {
+      .l-#{$type}-t#{$i},
+      %l-#{$type}-t#{$i} { #{$type}-top:    $baseline * $i; }
+
+      .l-#{$type}-b#{$i},
+      %l-#{$type}-b#{$i} { #{$type}-bottom: $baseline * $i; }
+
+      .l-#{$type}-v#{$i},
+      %l-#{$type}-v#{$i} {
         #{$type}-top:    $baseline * $i;
         #{$type}-bottom: $baseline * $i;
       }

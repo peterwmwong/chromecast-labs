@@ -1,30 +1,28 @@
 +import('../../bower_components/core-ajax/core-ajax.html')
++import('./garcon-nav.html')
 
 +polymer-element
   core-ajax(
     auto
     url="/api/videos"
     response="{{ videos }}"
-    on-polymer-response="{{ onResponse }}"
     handleAs="json" )
 
-  .app-bar.l-padding-h2
-    .app-bar__item.t-icon-control.l-float-l.l-margin-r2
+  .app-bar(on-click="{{ toggleNav }}")
+    .app-bar__settings.t-icon-control.l-float-l.l-margin-r2
       | &#xe53e;
-    .app-bar__item.app-bar__item--title
+    .app-bar__title
       | garçon
 
   .shows.l-padding-h2
-
     template(repeat="{{ show in shows }}")
       .show
         h3.show__name.l-padding-b4.l-padding-h3.l-padding-t6
           | {{ show.name }}
 
-        .videos
-
+        .videos.b-list.b-list--card
           template(repeat="{{ video in show.videos }}")
-            .video.l-padding-h3
+            .video.b-list__item
               a.video__play-button.l-float-r.t-icon-control
                 | &#xe5bb;
 
@@ -32,3 +30,7 @@
 
               span.video__season.l-margin-h2
                 | season {{ video.season }}
+
+  template(if="{{ isNavShowing }}")
+    .content-overlay(on-click="{{ toggleNav }}")
+    garcon-nav

@@ -1,0 +1,24 @@
++import('../../bower_components/core-ajax/core-ajax.html')
+
++polymer-element()(noscript)
+  core-ajax(
+    auto
+    url="/api/shows"
+    response="{{ shows }}"
+    handleAs="json" )
+
+  .shows.b-list
+    .show.b-list__item
+      | All
+
+    .show-group.b-list__item.b-list__item--header
+      | LOCAL
+    template(repeat="{{ shows }}")
+      .show.b-list__item
+        | {{ name }}
+
+    .show-group.b-list__item.b-list__item--header
+      | PBS
+    template(repeat="{{ shows }}")
+      .show.b-list__item
+        | {{ name }}
