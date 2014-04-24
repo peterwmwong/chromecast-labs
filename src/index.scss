@@ -32,6 +32,25 @@
 // 2. Prevent iOS text size adjust after orientation change, without
 //    disabling user zoom.
 
+body,
+html {
+  font-size: $font-root-size;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  @include font-smoothing(on);
+  @include hidpi(1.5) { @include font-smoothing(off); }
+  color: $gray-lighter;
+  font-family: $font-stack-proportional;
+  font-size: 1.6rem;
+  font-weight: $font-weight-light;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+}
+
 html {
   -ms-text-size-adjust: 100%; // 2
   -webkit-text-size-adjust: 100%; // 2
@@ -310,24 +329,6 @@ html /deep/ {
 
     &:focus { outline: none; } // 2
 
-  }
-
-  html,
-  body {
-    font-size: $font-root-size;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    @include font-smoothing(on);
-    @include hidpi(1.5) { @include font-smoothing(off); }
-    color: $gray-lighter;
-    font-family: $font-stack-proportional;
-    font-size: 1.6rem;
-    font-weight: $font-weight-light;
-    line-height: 1;
-    text-rendering: optimizeLegibility;
   }
 
   h1,
