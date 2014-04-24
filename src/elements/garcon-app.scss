@@ -3,7 +3,6 @@
 
 $app-bar-height: $baseline * 8;
 
-
 :host {
   display: block;
   padding: $app-bar-height 0 ($baseline * 2) 0;
@@ -11,8 +10,10 @@ $app-bar-height: $baseline * 8;
 
 .app-bar {
   @include position(fixed, 0px 0px null 0px);
+  @include user-select(none);
   background: $brand-primary-light;
   border-bottom: 2px solid darken($brand-primary-light, 10%);
+  cursor: pointer;
   font-size: 1.4rem;
   font-weight: $font-weight-semibold;
   line-height: $app-bar-height - 2;
@@ -23,17 +24,19 @@ $app-bar-height: $baseline * 8;
   }
 }
 
-garcon-nav {
-  @include position(fixed, 0px null 0px 0px);
-  width: $column * 3.25;
-}
+.app-nav {
+  garcon-nav {
+    @include position(fixed, $app-bar-height null 0px 0px);
+    box-shadow: 0 10px 10px black;
+    width: $column * 3;
+  }
 
-.content-overlay {
-  @include position(absolute, 0px 0px 0px 0px);
-  display: block;
-  content: '';
-  background: black;
-  opacity: 0.666;
+  .content-overlay {
+    @include position(fixed, $app-bar-height 0px 0px 0px);
+    background: black;
+    content: '';
+    opacity: 0.666;
+  }
 }
 
 .video {

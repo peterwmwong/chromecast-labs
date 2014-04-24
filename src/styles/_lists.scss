@@ -3,8 +3,7 @@ html /deep/ {
   .b-list {
 
     .b-list__item {
-      padding-left: $base-width * 3;
-      padding-right: $base-width * 3;
+      padding: 0 ($base-width * 3);
       border-bottom: 1px solid transparentize($gray-lightest, .95);
       line-height: $baseline * 10;
     }

@@ -1,4 +1,6 @@
 +import('../../bower_components/core-ajax/core-ajax.html')
++import('../../bower_components/polymer-animation/polymer-animation.html')
++import('../../bower_components/polymer-animation/polymer-animation-group.html')
 +import('./garcon-nav.html')
 
 +polymer-element
@@ -31,6 +33,21 @@
               span.video__season.l-margin-h2
                 | season {{ video.season }}
 
-  template(if="{{ isNavShowing }}")
-    .content-overlay(on-click="{{ toggleNav }}")
-    garcon-nav
+  .app-nav
+    .content-overlay#contentOverlay(on-click="{{ toggleNav }}")
+    garcon-nav#nav
+
+  polymer-animation-group#animateNav(duration=".15")
+    polymer-animation(target="{{ $.nav }}" fill="forwards" )
+      polymer-animation-keyframe
+        polymer-animation-prop(name="transform" value="translateX(0px)")
+      polymer-animation-keyframe
+        polymer-animation-prop(name="transform" value="translateX(-100%)")
+
+    polymer-animation(target="{{ $.contentOverlay }}" fill="forwards" )
+      polymer-animation-keyframe
+        polymer-animation-prop(name="opacity" value="0.666")
+        polymer-animation-prop(name="display" value="block")
+      polymer-animation-keyframe
+        polymer-animation-prop(name="opacity" value="0")
+        polymer-animation-prop(name="display" value="none")

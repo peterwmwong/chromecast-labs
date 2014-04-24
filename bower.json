@@ -12,6 +12,7 @@
     "jasmine": "2.0.0",
     "platform": "Polymer/platform#0.2.3",
     "polymer": "Polymer/polymer#0.2.3",
+    "polymer-animation": "PolymerLabs/polymer-animation#master",
     "core-ajax": "Polymer/core-ajax#0.2.3"
   }
 }

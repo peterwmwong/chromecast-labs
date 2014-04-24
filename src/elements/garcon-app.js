@@ -1,6 +1,14 @@
 Polymer('garcon-app',{
 
-  toggleNav() { this.isNavShowing = !this.isNavShowing; },
+  toggleNav() {
+    if(this.$.animateNav.player) {
+      this.$.animateNav.cancel();
+    }
+
+    this.isNavExpanded = !this.isNavExpanded;
+    this.$.animateNav.direction = this.isNavExpanded ? 'normal' : 'reverse';
+    this.$.animateNav.play();
+  },
 
   // Change Listeners
   // ----------------
