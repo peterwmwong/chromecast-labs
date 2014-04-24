@@ -1,13 +1,11 @@
 Polymer('garcon-app',{
 
   toggleNav() {
-    if(this.$.animateNav.player) {
-      this.$.animateNav.cancel();
-    }
-
     this.isNavExpanded = !this.isNavExpanded;
-    this.$.animateNav.direction = this.isNavExpanded ? 'normal' : 'reverse';
-    this.$.animateNav.play();
+
+    // TODO(pwong): shouldn't it be possible to do a template bind?...
+    //              <polymer-element class="{{ isNavExpanded ? 's-nav-expanded' : '' }}">
+    this.classList[this.isNavExpanded ? 'add' : 'remove']('s-nav-expanded');
   },
 
   // Change Listeners

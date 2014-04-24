@@ -8,6 +8,17 @@ $app-bar-height: $baseline * 8;
   padding: $app-bar-height 0 ($baseline * 2) 0;
 }
 
+:host(.s-nav-expanded) {
+
+  garcon-nav { @include transform(translateX(0%)); }
+
+  .content-overlay {
+    @include transition-delay( 0s, 0s );
+    bottom: 0px;
+    opacity: 0.666;
+  }
+}
+
 .app-bar {
   @include position(fixed, 0px 0px null 0px);
   @include user-select(none);
@@ -24,22 +35,28 @@ $app-bar-height: $baseline * 8;
   }
 }
 
-.app-nav {
-  garcon-nav {
-    @include position(fixed, $app-bar-height null 0px 0px);
-    box-shadow: 0 10px 10px black;
-    width: $column * 3;
-  }
+garcon-nav {
+  @include position(fixed, $app-bar-height null 0px 0px);
+  @include transform(translateX(-100%));
+  @include transition(transform $animation-duration ease-out);
+  box-shadow: 0 10px 10px black;
+  width: $column * 3;
+}
 
-  .content-overlay {
-    @include position(fixed, $app-bar-height 0px 0px 0px);
-    background: black;
-    content: '';
-    opacity: 0.666;
-  }
+.content-overlay {
+  @include position(fixed, $app-bar-height 0px 0px 0px);
+  @include transition(
+    opacity $animation-duration ease-in-out,
+    bottom  0s                  ease-in-out $animation-duration
+  );
+  background: black;
+  bottom: 100%;
+  content: '';
+  opacity: 0;
 }
 
 .video {
+
   &__play-button { color: $gray-darker; }
 
   &__season {
