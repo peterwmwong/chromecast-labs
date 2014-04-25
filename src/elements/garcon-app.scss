@@ -6,14 +6,14 @@ $app-bar-height: $baseline * 8;
 :host {
   display: block;
   padding: $app-bar-height 0 ($baseline * 2) 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
 }
 
 :host(.s-nav-expanded) {
 
-  garcon-nav { @include transform(translateX(0%)); }
+  garcon-nav {
+    @include transform(translateX(0%));
+    box-shadow: 0 20px 20px black;
+  }
 
   .content-overlay {
     @include transition-delay( 0s, 0s );
@@ -32,6 +32,7 @@ $app-bar-height: $baseline * 8;
   font-weight: $font-weight-semibold;
   line-height: $app-bar-height - 2;
   text-shadow: 0 2px rgba(0,0,0,.25);
+  z-index: 1;
 
   .app-bar__settings {
     margin-left: $base-width * -2;
@@ -42,25 +43,41 @@ garcon-nav {
   @include position(fixed, $app-bar-height null 0px 0px);
   @include transform(translateX(-100%));
   @include transition(transform $animation-duration ease-out);
-  box-shadow: 0 10px 10px black;
-  width: $column * 3;
+  width: $column * 2.5;
 }
 
 .content-overlay {
-  @include position(fixed, $app-bar-height 0px 0px 0px);
+  @include position(fixed, $app-bar-height 0px 100% 0px);
   @include transition(
     opacity $animation-duration ease-in-out,
     bottom  0s                  ease-in-out $animation-duration
   );
   background: black;
-  bottom: 100%;
   content: '';
   opacity: 0;
 }
 
+.show {
+  &__name {
+    position: relative;
+
+    // TODO(pwong): replace with an image of the show
+    &:before {
+      @include position(absolute, ($baseline * 3) (-$base-width * 2) (-$baseline * 8) (-$base-width * 2));
+      @include linear-gradient(rgba(0,0,0,0.0), lighten($gray-darker, 0%));
+      content: '';
+      display: block;
+      z-index: -1;
+    }
+  }
+}
+
 .video {
 
-  &__play-button { color: $gray-darker; }
+  &__play-button {
+    color: $gray-darker;
+    padding-top: 3px;
+  }
 
   &__season {
     color: $gray-dark;

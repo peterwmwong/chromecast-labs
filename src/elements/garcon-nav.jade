@@ -1,24 +1,28 @@
 +import('../../bower_components/core-ajax/core-ajax.html')
++import('./garcon-state.html')
 
-+polymer-element()(noscript)
++polymer-element()
   core-ajax(
     auto
     url="/api/shows"
     response="{{ shows }}"
     handleAs="json" )
 
+  garcon-state#state_show(key="show")
+
   .shows.b-list
-    .show.b-list__item
-      | All
+    template(bind="{{ {} }}")
+      .show.b-list__item.b-list__item--selectable(on-click="{{ selectShow }}")
+        | All
 
     .show-group.b-list__item.b-list__item--header
       | LOCAL
     template(repeat="{{ shows }}")
-      .show.b-list__item
+      .show.b-list__item.b-list__item--selectable(on-click="{{ selectShow }}")
         | {{ name }}
 
     .show-group.b-list__item.b-list__item--header
       | PBS
     template(repeat="{{ shows }}")
-      .show.b-list__item
+      .show.b-list__item.b-list__item--selectable
         | {{ name }}

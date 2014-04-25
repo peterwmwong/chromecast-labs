@@ -19,3 +19,5 @@ $error                 :hsl(355,100%,67%);
 $warning               :hsl(34,65%,55%);
 $warning-darker        :darken(desaturate($warning, 50%), 10%);
 $notify                :hsl(43,81%,83%);
+
+$hover-highlight       :transparentize( lighten(desaturate($brand-primary-light, 20%), 10%), .9);

@@ -3,25 +3,33 @@ html /deep/ {
   .b-list {
 
     .b-list__item {
-      padding: 0 ($base-width * 3);
       border-bottom: 1px solid transparentize($gray-lightest, .95);
+      clear: both;
       line-height: $baseline * 10;
+      padding: 0 ($base-width * 3);
+    }
+
+    .b-list__item--selectable {
+      cursor: pointer;
+
+      &:hover { background-color: $hover-highlight; }
     }
 
     .b-list__item--header {
-      border-bottom: 1px solid transparentize($gray-lightest, .9);
-      font-size: 1rem;
-      line-height: $baseline * 6;
       background-color: rgba(0,0,0,.25);
+      border-bottom: 1px solid transparentize($gray-lightest, .9);
       color: $gray-dark;
+      font-size: 1rem;
       letter-spacing: 1px;
+      line-height: $baseline * 6;
     }
   }
 
   .b-list--card {
     @extend %card-shadow;
     background: $gray-darkest;
+    border-radius: 3px;
 
-    .b-list__item:last-child { border-bottom: none; }
+    .b-list__item:last-of-type { border-bottom-color: transparent; }
   }
 }

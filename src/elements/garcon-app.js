@@ -1,6 +1,6 @@
 Polymer('garcon-app',{
 
-  toggleNav() {
+  toggleNav(){
     this.isNavExpanded = !this.isNavExpanded;
 
     // TODO(pwong): shouldn't it be possible to do a template bind?...
@@ -11,7 +11,11 @@ Polymer('garcon-app',{
   // Change Listeners
   // ----------------
 
-  videosChanged(old, videos) {
+  filterShows(shows, selectedShow){
+    return shows && shows.filter(show=>!selectedShow || show.name === selectedShow)
+  },
+
+  videosChanged(old, videos){
     if (videos) {
       var showMap = videos.reduce((showMap, video)=>{
           if (!showMap[video.name]) {
@@ -24,7 +28,7 @@ Polymer('garcon-app',{
       this.shows = Object.keys(showMap).map((showName)=>{
         return {
           name:   showName,
-          videos: showMap[showName].sort((a,b)=>{return a.episode - b.episode;})
+          videos: showMap[showName].sort((a,b)=>a.episode - b.episode)
         };
       });
     }

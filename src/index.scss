@@ -37,7 +37,6 @@ html {
   font-size: $font-root-size;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 body {
@@ -334,7 +333,7 @@ html /deep/ {
   h1,
   h2,
   h3 {
-    color: $gray-light;
+    color: $gray-lightest;
     font-weight: $font-weight-light;
     margin: 0;
     text-shadow: 0 2px black;

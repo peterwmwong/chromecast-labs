@@ -1,5 +1,6 @@
 +import('../../bower_components/core-ajax/core-ajax.html')
 +import('./garcon-nav.html')
++import('./garcon-state.html')
 
 +polymer-element
   core-ajax(
@@ -8,21 +9,23 @@
     response="{{ videos }}"
     handleAs="json" )
 
+  garcon-state#state_show(key="show" value="{{ state_show }}")
+
   .app-bar(on-click="{{ toggleNav }}")
     .app-bar__settings.t-icon-control.l-float-l.l-margin-r2
       | &#xe53e;
     .app-bar__title
-      | garçon
+      | {{ state_show || 'All' }}
 
   .shows.l-padding-h2
-    template(repeat="{{ show in shows }}")
+    template(repeat="{{ show in shows | filterShows(state_show) }}")
       .show
-        h3.show__name.l-padding-b4.l-padding-h3.l-padding-t6
+        h3.show__name.l-padding-b4.l-padding-h3.l-padding-t8
           | {{ show.name }}
 
         .videos.b-list.b-list--card
           template(repeat="{{ video in show.videos }}")
-            .video.b-list__item
+            .video.b-list__item.b-list__item--selectable
               a.video__play-button.l-float-r.t-icon-control
                 | &#xe5bb;
 
@@ -32,4 +35,4 @@
                 | season {{ video.season }}
 
   .content-overlay(on-click="{{ toggleNav }}")
-  garcon-nav
+  garcon-nav(on-selection="{{ toggleNav }}")

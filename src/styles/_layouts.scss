@@ -7,7 +7,7 @@ html /deep/ {
   %l-float-l { float: left;  }
 
   @each $type in padding, margin {
-    @for $i from 1 through 6 {
+    @for $i from 1 through 8 {
       .l-#{$type}-r#{$i},
       %l-#{$type}-r#{$i} { #{$type}-right: $base-width * $i; }
 
