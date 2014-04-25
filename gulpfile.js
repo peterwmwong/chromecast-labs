@@ -188,7 +188,7 @@ gulp.task('test', ['spec','templates','styles','code'], function(done){
     process.exit();
   });
 });
-gulp.task('dev',     ['livereload','server']);
+gulp.task('dev',     ['livereload','test-dev','server']);
 gulp.task('default', ['templates', 'styles', 'code']);
 gulp.task('prod',    ['default'], function () {
   vulcanize.setOptions({
