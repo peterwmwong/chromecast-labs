@@ -17,6 +17,9 @@ var tinylr     = require('tiny-lr');
 var traceur    = require('gulp-traceur');
 var vulcanize  = require('vulcanize');
 
+var server     = require('./server');
+
+
 // Constants
 // ---------
 
@@ -26,6 +29,7 @@ var BUILD_DIR  = './build/';
 
 var SPEC_SRC_DIR    = './spec/';
 var SPEC_BUILD_DIR  = './spec_build/';
+
 
 // Cleanup Tasks
 // -------------
@@ -40,16 +44,12 @@ gulp.task('spec-clean', function() {
              .pipe(clean());
 });
 
-// Static Server
-// -------------
 
-gulp.task('server', function(){
-  connect.server({
-    livereload: false,
-    port: 8081,
-    root: [__dirname]
-  });
-});
+// Server
+// ------
+
+gulp.task('server', server.start);
+
 
 // Compile Tasks
 // -------------
@@ -179,24 +179,29 @@ gulp.task('livereload', ['watch-templates',
   });
 });
 
+
 // CLI Tasks
 // ---------
 
-gulp.task('test', ['spec','templates','styles','code'], function(done){
-  karma.server.start({autoWatch: false, singleRun: true, configFile: path.resolve('./karma.conf.js')},function(){
+gulp.task('test', ['spec', 'templates', 'styles', 'code'], function(done){
+  karma.server.start({
+    autoWatch: false,
+    singleRun: true,
+    configFile: path.resolve('./karma.conf.js'
+  )}, function(){
     done();
-    process.exit();
+    process.exit(); // TODO(pwong): Is this needed?
   });
 });
-gulp.task('dev',     ['livereload','test-dev','server']);
+gulp.task('dev',     ['livereload', 'test-dev', 'server']);
 gulp.task('default', ['templates', 'styles', 'code']);
-gulp.task('prod',    ['default'], function () {
+gulp.task('prod',    ['default'], function(){
   vulcanize.setOptions({
     inline: true,
     strip: true,
     input: 'build/index.html',
     output: 'build/index.html'
-  },function(){
+  }, function(){
     vulcanize.processDocument();
   });
 });

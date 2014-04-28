@@ -1,6 +1,10 @@
 {
   "name": "chromecast-labs",
   "repository": "https://github.com/peterwmwong/chromecast-labs",
+  "private": true,
+  "scripts": {
+    "start": "node -e 'require(\"./server\").start()'"
+  },
   "engines": {
     "node": ">=0.10.26"
   },
@@ -22,6 +26,7 @@
     "karma": "0.12.1",
     "systemjs": "0.5.5",
     "tiny-lr": "peterwmwong/tiny-lr#fix-livecss-option",
-    "vulcanize": "0.2.4"
+    "vulcanize": "0.2.4",
+    "hapi": "^4.0.2"
   }
 }

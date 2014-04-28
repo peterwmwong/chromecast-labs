@@ -18,12 +18,9 @@ Polymer('garcon-app',{
   videosChanged(old, videos){
     if (videos) {
       var showMap = videos.reduce((showMap, video)=>{
-          if (!showMap[video.name]) {
-            showMap[video.name] = [];
-          }
-          showMap[video.name].push(video);
-          return showMap;
-        },{});
+        (showMap[video.show] || (showMap[video.show] = [])).push(video);
+        return showMap;
+      },{});
 
       this.shows = Object.keys(showMap).map((showName)=>{
         return {
