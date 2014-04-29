@@ -27,6 +27,9 @@
     "systemjs": "0.5.5",
     "tiny-lr": "peterwmwong/tiny-lr#fix-livecss-option",
     "vulcanize": "0.2.4",
-    "hapi": "^4.0.2"
+    "hapi": "^4.0.2",
+    "mocha": "^1.18.2",
+    "sinon": "^1.9.1",
+    "gulp-mocha": "^0.4.1"
   }
 }

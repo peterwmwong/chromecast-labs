@@ -1,13 +1,13 @@
 var Hapi = require('hapi');
-var videosGet = require('./api/videosGet');
-var showsGet = require('./api/showsGet');
+var videosGet = require('./api/src/videosGet');
+var showsGet = require('./api/src/showsGet');
 
 var server = new Hapi.Server(8081, { files: { relativeTo: __dirname } });
 server.route([
 
   // /api
-  { method: 'GET', path: '/api/shows',  handler: showsGet  },
-  { method: 'GET', path: '/api/videos', handler: videosGet },
+  { method: 'GET', path: '/api/shows',  handler: showsGet.go  },
+  { method: 'GET', path: '/api/videos', handler: videosGet.go },
 
 
   // [STATIC] /build/**

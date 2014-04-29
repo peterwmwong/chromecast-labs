@@ -34,9 +34,7 @@ $app-bar-height: $baseline * 8;
   text-shadow: 0 2px rgba(0,0,0,.25);
   z-index: 1;
 
-  .app-bar__settings {
-    margin-left: $base-width * -2;
-  }
+  .app-bar__settings { margin-left: $base-width * -2; }
 }
 
 garcon-nav {

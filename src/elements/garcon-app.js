@@ -13,21 +13,6 @@ Polymer('garcon-app',{
 
   filterShows(shows, selectedShow){
     return shows && shows.filter(show=>!selectedShow || show.name === selectedShow)
-  },
-
-  videosChanged(old, videos){
-    if (videos) {
-      var showMap = videos.reduce((showMap, video)=>{
-        (showMap[video.show] || (showMap[video.show] = [])).push(video);
-        return showMap;
-      },{});
-
-      this.shows = Object.keys(showMap).map((showName)=>{
-        return {
-          name:   showName,
-          videos: showMap[showName].sort((a,b)=>a.episode - b.episode)
-        };
-      });
-    }
   }
+
 });

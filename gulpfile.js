@@ -10,6 +10,7 @@ var jade       = require('gulp-jade');
 var jadeLib    = require('jade');
 var karma      = require('karma');
 var livereload = require('gulp-livereload');
+var exec       = require('child_process').exec;
 var path       = require('path');
 var plumber    = require('gulp-plumber');
 var sass       = require('gulp-ruby-sass');
@@ -124,12 +125,18 @@ var compileSpecJs = function(){
              .pipe(gulp.dest(SPEC_BUILD_DIR));
 };
 
-gulp.task('test-dev', ['spec','livereload'], function(){
+gulp.task('test-dev', ['spec', 'api-spec', 'watch-api-spec', 'livereload'], function(){
   karma.server.start({configFile: path.resolve('./karma.conf.js')} );
 });
 gulp.task('spec', ['spec-clean'], compileSpecJs);
 gulp.task('spec-noclean', compileSpecJs);
 
+gulp.task('api-spec', function(done){
+  exec('node_modules/.bin/mocha api/spec/', function(error, stdout, stderr){
+    gutil.log('Mocha: \n' + (stderr || stdout));
+    done();
+  });
+});
 
 // Watch Tasks
 // -----------
@@ -153,6 +160,10 @@ gulp.task('watch-code', ['code'], function(){
 
 gulp.task('watch-spec', ['spec'], function(){
   gulp.watch(SPEC_SRC_DIR+'**/*.js', ['spec-noclean']);
+});
+
+gulp.task('watch-api-spec', function(){
+  gulp.watch('api/**/*.js', ['api-spec']);
 });
 
 gulp.task('livereload', ['watch-templates',
@@ -183,6 +194,7 @@ gulp.task('livereload', ['watch-templates',
 // CLI Tasks
 // ---------
 
+
 gulp.task('test', ['spec', 'templates', 'styles', 'code'], function(done){
   karma.server.start({
     autoWatch: false,
@@ -193,7 +205,7 @@ gulp.task('test', ['spec', 'templates', 'styles', 'code'], function(done){
     process.exit(); // TODO(pwong): Is this needed?
   });
 });
-gulp.task('dev',     ['livereload', 'test-dev', 'server']);
+gulp.task('dev',     ['livereload', 'test-dev', 'watch-api-spec', 'server']);
 gulp.task('default', ['templates', 'styles', 'code']);
 gulp.task('prod',    ['default'], function(){
   vulcanize.setOptions({
