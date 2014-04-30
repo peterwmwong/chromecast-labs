@@ -195,7 +195,7 @@ gulp.task('livereload', ['watch-templates',
 // ---------
 
 
-gulp.task('test', ['spec', 'templates', 'styles', 'code'], function(done){
+gulp.task('test', ['api-spec', 'spec', 'templates', 'styles', 'code'], function(done){
   karma.server.start({
     autoWatch: false,
     singleRun: true,

@@ -29,7 +29,7 @@
 
 ## Tests
 
-_Not yet_ :)
+    gulp test
 
 ## Key Technologies
 

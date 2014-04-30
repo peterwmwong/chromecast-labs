@@ -1,5 +1,6 @@
-var fs = require('fs');
 var path = require('path');
+var cp = require('child_process');
+var config = require('../../config/config.json');
 
 module.exports = {
 
@@ -40,21 +41,21 @@ module.exports = {
 
     if(match = /(.*?)[\. ]?[Ss](\d+)[Ee](\d+).*\.mp4$/.exec(filename)) {
       result = {
-        name: match[1],
+        show: match[1],
         season: +match[2],
         episode: +match[3],
         file: videoPath
       };
     } else if(match = /(.*?)\.(\d+)[xX](\d+).*\.mp4$/.exec(filename)) {
       result = {
-        name: match[1],
+        show: match[1],
         season: +match[2],
         episode: +match[3],
         file: videoPath
       };
     } else if(match = /^(.*?) [Ss](\d+)[Ee](\d+)/.exec(parentDirname)) {
       result = {
-        name: match[1],
+        show: match[1],
         season: +match[2],
         episode: +match[3],
         file: videoPath
@@ -62,23 +63,28 @@ module.exports = {
     }
 
     if(result){
-      result.name = this.transformWords(
+      result.show = this.transformWords(
                       this.normalizeNameDelimiter(
-                        result.name)).trim();
+                        result.show)).trim();
       return result;
+    }else{
+      return {file: videoPath};
     }
   },
   go: function(req, reply){
-    fs.readdir(__dirname+'../videos',function(err, files){
-      reply(files.reduce(function(acc, file){
-        acc.push({
-          "show": "True Detective",
-          "season": 1,
-          "episode": 4,
-          "file": file
-        });
-        return acc;
-      },[]));
+    var getVideoFromFilename = this.getVideoFromFilename.bind(this);
+    cp.exec('find '+config.videosDir+' -name "*.mp4"', function(error, stdout, stderr){
+      if(error){
+        reply(Hapi.error.badRequest('Error finding videos'))
+      }else{
+        reply(stdout.split('\n').reduce(function(acc, videoPath){
+          var video = getVideoFromFilename(videoPath);
+          if(video){
+            acc.push(video);
+          }
+          return acc;
+        },[]));
+      }
     });
   }
 };
