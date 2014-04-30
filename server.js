@@ -7,8 +7,6 @@ server.route([
 
   // /api
   { method: 'GET', path: '/api/shows',  handler: showsGet.go  },
-  { method: 'GET', path: '/api/videos', handler: videosGet.go },
-
 
   // [STATIC] /build/**
   { method: 'GET', path: '/build/{path*}',
