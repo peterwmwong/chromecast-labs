@@ -25,9 +25,6 @@ module.exports = {
     season: 2, episode: 2, show: "Bates Motel"},
   "./Bates.Motel.S02E06.HDTV.x264-KILLERS.mp4": {
     season: 2, episode: 6, show: "Bates Motel"},
-  // "./Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - 15 Million Merits [MP4-AAC](oan).mp4": {
-  // "./Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - The Entire History of You [MP4-AAC](oan).mp4": {
-  // "./Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - The National Anthem [MP4-AAC](oan).mp4": {
   "./Black Sails S01E01 HDTV x264-2HD[ettv]/black.sails.s01e01.hdtv.x264-2hd.mp4": {
     season: 1, episode: 1, show: "Black Sails"},
   "./Black Sails S01E02 HDTV x264-KILLERS[ettv]/black.sails.s01e02.hdtv.x264-killers.mp4": {
@@ -163,5 +160,13 @@ module.exports = {
   "./Turn.S01E02.HDTV.x264-KILLERS.mp4": {
     season: 1, episode: 2, show: "Turn"},
   "./www.Torrenting.com - Mr.Selfridge.S02E03.HDTV.x264-RiVER/mr.selfridge.s02e03.hdtv.x264-river.mp4": {
-    season: 2, episode: 3, show: "Mr. Selfridge"}
+    season: 2, episode: 3, show: "Mr. Selfridge"},
+
+  // Shows that don't contain show, season, or episode information
+  "./Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - 15 Million Merits [MP4-AAC](oan).mp4": {
+    show:"Black Mirror"},
+  "./Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - The Entire History of You [MP4-AAC](oan).mp4": {
+    show:"Black Mirror"},
+  "./Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - The National Anthem [MP4-AAC](oan).mp4": {
+    show:"Black Mirror"}
 };

@@ -10,13 +10,13 @@ module.exports = {
     },
 
     function capitalizeName(word, i, numWords){
-      return (i !== 0 && /the|with|to|of/.test(word))
-                ? word
-                : word[0].toUpperCase() + word.slice(1);
+      return (i === 0 || !/the|with|to|of/.test(word))
+                ? word[0].toUpperCase() + word.slice(1)
+                : word
     },
 
     function removeYearLastWord(word, i, numWords){
-      return (/(20|19)\d\d/.test(word)) ? '' : word;
+      return (i+1 === numWords && /(20|19)\d\d/.test(word)) ? '' : word;
     }
   ],
 
@@ -25,13 +25,12 @@ module.exports = {
   },
 
   transformWords: function(name){
-    var wordTransforms = this.wordTransforms;
-    return name.split(' ').map(function(word, i, wordArray){
+    return name.split(' ').map((function(word, i, wordArray){
       var numWords = wordArray.length;
-      return wordTransforms.reduce(function(curWord,transform, j){
+      return this.wordTransforms.reduce(function(curWord, transform, j){
         return transform(curWord, i, numWords);
-      },word);
-    }).join(' ');
+      }, word);
+    }).bind(this)).join(' ');
   },
 
   getVideoFromFilename: function(videoPath){
@@ -53,6 +52,11 @@ module.exports = {
         episode: +match[3],
         file: videoPath
       };
+    } else if(match = /(.*?) - .*\.mp4$/.exec(filename)) {
+      result = {
+        show: match[1],
+        file: videoPath
+      };
     } else if(match = /^(.*?) [Ss](\d+)[Ee](\d+)/.exec(parentDirname)) {
       result = {
         show: match[1],
@@ -62,29 +66,27 @@ module.exports = {
       };
     }
 
-    if(result){
+    if(result)
       result.show = this.transformWords(
                       this.normalizeNameDelimiter(
                         result.show)).trim();
-      return result;
-    }else{
-      return {file: videoPath};
-    }
+    else
+      result = {file: videoPath};
+
+    return result;
   },
+
   go: function(req, reply){
     var getVideoFromFilename = this.getVideoFromFilename.bind(this);
     cp.exec('find '+config.videosDir+' -name "*.mp4"', function(error, stdout, stderr){
-      if(error){
-        reply(Hapi.error.badRequest('Error finding videos'))
-      }else{
+      if(error)
+        reply(Hapi.error.badRequest('Error finding videos'));
+      else
         reply(stdout.split('\n').reduce(function(acc, videoPath){
           var video = getVideoFromFilename(videoPath);
-          if(video){
-            acc.push(video);
-          }
+          if(video) acc.push(video);
           return acc;
         },[]));
-      }
     });
   }
 };
