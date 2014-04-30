@@ -1,9 +1,9 @@
 var assert = require('assert');
 var child_process = require('child_process');
 var config = require('../../config/config.json');
-var sinon = require('sinon');
-
 var fixtureVideoFileListings = require('../spec-fixtures/video-file-listings');
+var path = require('path');
+var sinon = require('sinon');
 var videosGet = require('../src/videosGet');
 
 describe("videoGet",function(){
@@ -102,18 +102,27 @@ describe("videoGet",function(){
   });
 
   describe("#getVideoFromFilename(filename):Video", function(){
+    beforeEach(function(){
+      this.config_videosDir_orig = config.videosDir;
+      config.videosDir = "/mock/video/dir";
+    });
+
+    afterEach(function(){
+      config.videosDir = this.config_videosDir_orig;
+    });
+
     it("parses name, season, and episode information from all an example file listing", function(){
-      Object.keys(fixtureVideoFileListings).forEach(function(path){
-        var expected = JSON.parse(JSON.stringify(fixtureVideoFileListings[path]));
-        expected.file = path;
+      Object.keys(fixtureVideoFileListings).forEach(function(videoPath){
+        var expected = JSON.parse(JSON.stringify(fixtureVideoFileListings[videoPath]));
+        expected.file = path.relative(config.videosDir, videoPath);
         assert.deepEqual(
-          videosGet.getVideoFromFilename(path),
+          videosGet.getVideoFromFilename(videoPath),
           expected);
       });
     });
 
     it("parses video files with no name, season, or episode information", function(){
-      assert.deepEqual(videosGet.getVideoFromFilename("blah blah blah.mp4"), {
+      assert.deepEqual(videosGet.getVideoFromFilename(config.videosDir+"/blah blah blah.mp4"), {
         file: "blah blah blah.mp4"
       });
     });

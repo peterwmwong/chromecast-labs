@@ -1,6 +1,6 @@
-var path = require('path');
-var cp = require('child_process');
 var config = require('../../config/config.json');
+var cp = require('child_process');
+var path = require('path');
 
 module.exports = {
 
@@ -72,6 +72,8 @@ module.exports = {
                         result.show)).trim();
     else
       result = {file: videoPath};
+
+    result.file = path.relative(config.videosDir, result.file);
 
     return result;
   },
