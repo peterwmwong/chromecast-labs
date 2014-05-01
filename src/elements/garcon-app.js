@@ -8,8 +8,12 @@ Polymer('garcon-app',{
     this.classList[this.isNavExpanded ? 'add' : 'remove']('s-nav-expanded');
   },
 
-  // Change Listeners
-  // ----------------
+  showVideo(event, detail, target){
+    this.$.state_showVideo.setValue(target.templateInstance.model.video);
+  },
+
+  // Filters
+  // -------
 
   filterShows(shows, selectedShow){
     return shows && shows.filter(show=>!selectedShow || show.name === selectedShow)

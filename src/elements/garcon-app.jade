@@ -1,6 +1,7 @@
 +import('../../bower_components/core-ajax/core-ajax.html')
 +import('./garcon-nav.html')
 +import('./garcon-state.html')
++import('./garcon-video-player.html')
 
 +polymer-element
   core-ajax(
@@ -10,12 +11,18 @@
     handleAs="json" )
 
   garcon-state#state_show(key="show" value="{{ state_show }}")
+  garcon-state#state_showVideo(key="playingVideo" value="{{ state_showVideo }}")
 
   .app-bar(on-click="{{ toggleNav }}")
     .app-bar__settings.t-icon-control.l-float-l.l-margin-r2
       | &#xe53e;
     .app-bar__title
       | {{ state_show || 'All' }}
+
+  // TODO(pwong): new element
+  template(if="{{ state_showVideo }}")
+    garcon-video-player(
+      videoSrc="{{ 'http://localhost:1337/'+state_showVideo.file }}")
 
   .shows.l-padding-h2
     template(repeat="{{ show in shows | filterShows(state_show) }}")
@@ -25,7 +32,7 @@
 
         .videos.b-list.b-list--card
           template(repeat="{{ video in show.videos }}")
-            .video.b-list__item.b-list__item--selectable
+            .video.b-list__item.b-list__item--selectable(on-click="{{showVideo}}")
               a.video__play-button.l-float-r.t-icon-control
                 | &#xe5bb;
 
@@ -33,6 +40,7 @@
 
               span.video__season.l-margin-h2
                 | season {{ video.season }}
+
 
   .content-overlay(on-click="{{ toggleNav }}")
   garcon-nav(on-selection="{{ toggleNav }}")
