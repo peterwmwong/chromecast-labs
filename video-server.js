@@ -9,7 +9,8 @@ module.exports = {
     // exists
     if(!server && videoDirPath && fs.existsSync(videoDirPath)){
       server = http.createServer(function(req, res){
-        var videoPath = path.join(videoDirPath, '.'+req.url);
+        var videoPath = path.join(videoDirPath, '.'+decodeURIComponent(req.url));
+        console.log('videoPath', videoPath);
 
         if(fs.existsSync(videoPath)){
           var videoSize = fs.statSync(videoPath).size;
