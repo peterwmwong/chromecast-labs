@@ -19,10 +19,9 @@
     .app-bar__title
       | {{ state_show || 'All' }}
 
-  // TODO(pwong): new element
   template(if="{{ state_showVideo }}")
     garcon-video-player(
-      videoSrc="{{ 'http://localhost:1337/'+state_showVideo.file }}")
+      videoSrc="{{ 'http://'+videoServerHostName+':1337/'+state_showVideo.file }}")
 
   .shows.l-padding-h2
     template(repeat="{{ show in shows | filterShows(state_show) }}")
