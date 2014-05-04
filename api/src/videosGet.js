@@ -38,34 +38,33 @@ module.exports = {
     var parentDirname = path.basename(path.dirname(videoPath));
     var match, result;
 
-    if(match = /(.*?)[\. ]?[Ss](\d+)[Ee](\d+).*\.mp4$/.exec(filename)) {
+    if(match = /(.*?)[\. ]?[Ss](\d+)[Ee](\d+).*\.mp4$/.exec(filename))
       result = {
         show: match[1],
         season: +match[2],
         episode: +match[3],
         file: videoPath
       };
-    } else if(match = /(.*?)\.(\d+)[xX](\d+).*\.mp4$/.exec(filename)) {
+    else if(match = /(.*?)\.(\d+)[xX](\d+).*\.mp4$/.exec(filename))
       result = {
         show: match[1],
         season: +match[2],
         episode: +match[3],
         file: videoPath
       };
-    } else if(match = /(.*?) - (.*?)(\[.+\])?(\(.+\))?\.mp4$/.exec(filename)) {
+    else if(match = /(.*?) - (.*?)(\[.+\])?(\(.+\))?\.mp4$/.exec(filename))
       result = {
         show: match[1],
         name: match[2].trim(),
         file: videoPath
       };
-    } else if(match = /^(.*?) [Ss](\d+)[Ee](\d+)/.exec(parentDirname)) {
+    else if(match = /^(.*?) [Ss](\d+)[Ee](\d+)/.exec(parentDirname))
       result = {
         show: match[1],
         season: +match[2],
         episode: +match[3],
         file: videoPath
       };
-    }
 
     if(result)
       result.show = this.transformWords(
