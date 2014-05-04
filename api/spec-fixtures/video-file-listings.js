@@ -161,6 +161,8 @@ module.exports = {
     season: 1, episode: 2, show: "Turn"},
   "/mock/video/dir/www.Torrenting.com - Mr.Selfridge.S02E03.HDTV.x264-RiVER/mr.selfridge.s02e03.hdtv.x264-river.mp4": {
     season: 2, episode: 3, show: "Mr. Selfridge"},
+  "mock/video/dir/[ www.TorrentDay.com ] - Black_Mirror.2x01.Be_Right_Back.HDTV_x264-FoV/black_mirror.2x01.be_right_back.hdtv_x264-fov.mp4": {
+    season: 2, episode: 1, show: "Black Mirror"},
 
   // Shows that don't contain show, season, or episode information
   "/mock/video/dir/Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - 15 Million Merits [MP4-AAC](oan).mp4": {

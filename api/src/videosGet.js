@@ -21,7 +21,7 @@ module.exports = {
   ],
 
   normalizeNameDelimiter: function(name){
-    return name.replace(/\./g,' ');
+    return name.replace(/[\._]/g,' ');
   },
 
   transformWords: function(name){
