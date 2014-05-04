@@ -52,9 +52,10 @@ module.exports = {
         episode: +match[3],
         file: videoPath
       };
-    } else if(match = /(.*?) - .*\.mp4$/.exec(filename)) {
+    } else if(match = /(.*?) - (.*?)(\[.+\])?(\(.+\))?\.mp4$/.exec(filename)) {
       result = {
         show: match[1],
+        name: match[2].trim(),
         file: videoPath
       };
     } else if(match = /^(.*?) [Ss](\d+)[Ee](\d+)/.exec(parentDirname)) {

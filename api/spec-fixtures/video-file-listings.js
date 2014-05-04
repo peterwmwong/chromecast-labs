@@ -166,9 +166,9 @@ module.exports = {
 
   // Shows that don't contain show, season, or episode information
   "/mock/video/dir/Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - 15 Million Merits [MP4-AAC](oan).mp4": {
-    show:"Black Mirror"},
+    show:"Black Mirror", name:"15 Million Merits"},
   "/mock/video/dir/Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - The Entire History of You [MP4-AAC](oan).mp4": {
-    show:"Black Mirror"},
+    show:"Black Mirror", name:"The Entire History of You"},
   "/mock/video/dir/Black Mirror - Complete [MP4-AAC](oan)/Black Mirror - The National Anthem [MP4-AAC](oan).mp4": {
-    show:"Black Mirror"}
+    show:"Black Mirror", name:"The National Anthem"}
 };
