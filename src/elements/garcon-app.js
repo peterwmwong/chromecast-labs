@@ -2,10 +2,6 @@ Polymer('garcon-app',{
 
   videoServerHostName: window.location.hostname,
 
-  myVideoHandler(msg){
-    console.log('myVideoHandler', msg);
-  },
-
   toggleNav(){
     this.isNavExpanded = !this.isNavExpanded;
 

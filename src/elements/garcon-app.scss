@@ -55,6 +55,22 @@ garcon-nav {
   opacity: 0;
 }
 
+.show-player-container {
+  width: 100%;
+
+  &.s-show-video {
+    @include display(flex);
+    @include flex-direction(column);
+    @include position(fixed, $app-bar-height nil 0px nil);
+
+    .shows {
+      @include flex(1 1 auto);
+      overflow: auto;
+    }
+  }
+}
+
+
 .show {
   &__name {
     position: relative;
@@ -75,6 +91,10 @@ garcon-nav {
   &__play-button {
     color: $gray-darker;
     padding-top: 3px;
+
+    .s-playing & {
+      color: white;
+    }
   }
 
   &__season {
