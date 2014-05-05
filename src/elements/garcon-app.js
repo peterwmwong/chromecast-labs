@@ -14,6 +14,21 @@ Polymer('garcon-app',{
     this.$.state_showVideo.setValue(target.templateInstance.model.video);
   },
 
+  hideVideo(){
+    this.$.state_showVideo.setValue(null);
+  },
+
+  showsChanged(old, shows){
+    if(shows){
+      this.$.state_showVideo.setValue(shows[0].videos[0]);
+      for(var i=0; i<4; ++i)
+        shows[0].videos.push(shows[0].videos[0]);
+
+      for(i=0; i<25; ++i)
+        shows.push(shows[0]);
+    }
+  },
+
   // Filters
   // -------
 

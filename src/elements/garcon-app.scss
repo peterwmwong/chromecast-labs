@@ -68,11 +68,16 @@ garcon-nav {
     overflow: hidden;
     z-index: $z-index-video-player;
 
-    garcon-video-player {
+    .video-player-container {
       @include flex(0 0 auto);
       border-bottom: 2px solid black;
-      height: 200px;
+
+      &,
+      garcon-video-player {
+        height: 200px;
+      }
     }
+
 
     .shows {
       @include flex(1 1 auto);

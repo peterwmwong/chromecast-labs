@@ -1,4 +1,5 @@
 +import('../../bower_components/core-ajax/core-ajax.html')
++import('../../bower_components/polymer-ui-card/polymer-ui-card.html')
 +import('./garcon-nav.html')
 +import('./garcon-state.html')
 +import('./garcon-video-player.html')
@@ -22,8 +23,11 @@
   .show-player-container(class="{{ !!state_showVideo ? 's-show-video' : '' }}")
 
     template(if="{{ state_showVideo }}")
-      garcon-video-player(
-        videoSrc="{{ 'http://'+videoServerHostName+':1337/'+state_showVideo.file }}")
+      polymer-ui-card.video-player-container(
+        swipeable
+        on-polymer-card-swipe-away="{{ hideVideo }}")
+        garcon-video-player(
+          videoSrc="{{ 'http://'+videoServerHostName+':1337/'+state_showVideo.file }}")
 
     .shows.l-padding-h3
       template(repeat="{{ show in shows | filterShows(state_show) }}")
@@ -34,7 +38,7 @@
           .videos.b-list.b-list--card
             template(repeat="{{ video in show.videos }}")
               .video.b-list__item.b-list__item--selectable(
-                on-click="{{showVideo}}"
+                on-click="{{ showVideo }}"
                 class="{{ {'s-playing':video === state_showVideo} | tokenList }}")
                 a.video__play-button.l-float-r.t-icon-control
                   | &#xe5bb;
