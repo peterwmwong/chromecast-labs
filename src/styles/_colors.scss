@@ -1,9 +1,11 @@
-$gray-darkest          :hsl(210,15%,15%);
-$gray-darker           :hsl(210,15%,30%);
-$gray-dark             :hsl(210,15%,45%);
-$gray-light            :hsl(210,15%,70%);
-$gray-lighter          :hsl(210,15%,87%);
-$gray-lightest         :hsl(210,15%,93%);
+$gray-darkest          :hsl(210, 5%,15%);
+$gray-darker           :hsl(210, 5%,30%);
+$gray-dark             :hsl(210, 5%,45%);
+$gray-light            :hsl(210, 5%,70%);
+$gray-lighter          :hsl(210, 5%,87%);
+$gray-lightest         :hsl(210, 5%,93%);
+
+$gray-background       :darken($gray-darkest, 5%);
 
 // TODO(pwong): Below colors are not correct. Colors were originally for a light
 //              theme and need to be reevaluated for a dark theme.
@@ -20,4 +22,4 @@ $warning               :hsl(34,65%,55%);
 $warning-darker        :darken(desaturate($warning, 50%), 10%);
 $notify                :hsl(43,81%,83%);
 
-$hover-highlight       :transparentize( lighten(desaturate($brand-primary-light, 20%), 10%), .9);
+$hover-highlight       :transparentize( lighten(desaturate($brand-primary-light, 100%), 10%), .95);

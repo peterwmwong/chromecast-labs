@@ -25,10 +25,10 @@
       garcon-video-player(
         videoSrc="{{ 'http://'+videoServerHostName+':1337/'+state_showVideo.file }}")
 
-    .shows.l-padding-h2
+    .shows.l-padding-h3
       template(repeat="{{ show in shows | filterShows(state_show) }}")
-        .show
-          h3.show__name.l-padding-b4.l-padding-h3.l-padding-t8
+        .show.l-margin-b3
+          h3.show__name.l-padding-b4.l-padding-h3.l-padding-t12
             | {{ show.name }}
 
           .videos.b-list.b-list--card

@@ -34,7 +34,10 @@ $app-bar-height: $baseline * 8;
   text-shadow: 0 2px rgba(0,0,0,.25);
   z-index: 1;
 
-  .app-bar__settings { margin-left: $base-width * -2; }
+  .app-bar__settings {
+    margin-left: $base-width * -2;
+    text-shadow: inherit !important;
+  }
 }
 
 garcon-nav {
@@ -61,7 +64,15 @@ garcon-nav {
   &.s-show-video {
     @include display(flex);
     @include flex-direction(column);
-    @include position(fixed, $app-bar-height nil 0px nil);
+    @include position(fixed, 0px 0px 0px 0px);
+    overflow: hidden;
+    z-index: $z-index-video-player;
+
+    garcon-video-player {
+      @include flex(0 0 auto);
+      border-bottom: 2px solid black;
+      height: 200px;
+    }
 
     .shows {
       @include flex(1 1 auto);
@@ -70,17 +81,36 @@ garcon-nav {
   }
 }
 
-
 .show {
   &__name {
     position: relative;
+    text-shadow:
+      1px 0px $gray-darker,
+      -1px 0px $gray-darker,
+      0 2px black;
 
     // TODO(pwong): replace with an image of the show
     &:before {
-      @include position(absolute, ($baseline * 3) (-$base-width * 2) (-$baseline * 8) (-$base-width * 2));
-      @include linear-gradient(rgba(0,0,0,0.0), lighten($gray-darker, 0%));
+      @include position(absolute, 0px (-$base-width * 3) (-$baseline * 9) (-$base-width * 3));
+      @include linear-gradient(rgba(0,0,0,0.0), lighten($gray-light, 0%));
+
+      // === Mad Men ===
+      // background-image: url('http://businesslogos.com/blog/wp-content/uploads/2012/06/Mad_Men3-940x198.jpg');
+
+      // === Bates Motel ===
+      // background-image: url('http://oyster.ignimgs.com/wordpress/stg.ign.com/2013/03/BatesMotel_031413_1600.jpg');
+      // background-image: url('http://i1.ytimg.com/sh/6fCIGJR7E20/showposter.jpg?v=511d03eb');
+      // background-image: url('http://sites.psu.edu/jdt1018/wp-content/uploads/sites/6182/2013/11/Bates-Motel.jpg');
+
+      // === Black Mirror ===
+      // background-image: url('http://2.bp.blogspot.com/-rQsM89m2CJc/UDtghGbRq9I/AAAAAAAAQFw/sGzIlwaIEP8/s640/black-mirror-poster.jpg');
+      // background-image: url('http://planetneukoln.tv/wp-content/uploads/2013/05/black-mirror-404900l.jpg');
+
+      background-size: cover;
+
       content: '';
       display: block;
+      opacity: .333;
       z-index: -1;
     }
   }
@@ -89,7 +119,7 @@ garcon-nav {
 .video {
 
   &__play-button {
-    color: $gray-darker;
+    color: $gray-dark;
     padding-top: 3px;
 
     .s-playing & {

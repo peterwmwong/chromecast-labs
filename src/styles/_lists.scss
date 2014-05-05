@@ -27,8 +27,7 @@ html /deep/ {
 
   .b-list--card {
     @extend %card-shadow;
-    background: $gray-darkest;
-    border-radius: 3px;
+    background: lighten($gray-darkest, 2.5%);
 
     .b-list__item:last-of-type { border-bottom-color: transparent; }
   }
